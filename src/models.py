@@ -28,7 +28,7 @@ class Media(Base):
     id = Column(Integer, primary_key=True)
     type = Column(Enum, nullable=False)
     url = Column(String, ForeignKey('User.id'), nullable=False)
-    post_id = Column(String, ForeignKey('Post.id'), nullable=False)
+    post_id = Column(Integer, ForeignKey('Post.id'), nullable=False)
 
 class Post(Base):
     __tablename__ = 'Post'
@@ -43,8 +43,8 @@ class Comment(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     comment_text = Column(String, nullable=False)
-    author_id = Column(String, ForeignKey('User.id'), nullable=False)
-    post_id = Column(String, ForeignKey('Post.id'), nullable=False)
+    author_id = Column(Integer, ForeignKey('User.id'), nullable=False)
+    post_id = Column(Integer, ForeignKey('Post.id'), nullable=False)
 
     def to_dict(self):
         return {}
